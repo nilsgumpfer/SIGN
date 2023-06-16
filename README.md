@@ -1,6 +1,6 @@
 # SIGNed explanations: Unveiling relevant features by reducing bias
 
-This repository contains code to reproduce the experiments described in below journal article. If you use the code from this repository in your work, pleace cite:
+This repository contains code to reproduce the experiments published in below journal article. If you use the code from this repository in your work, please cite:
 ```
  @article{Gumpfer2023SIGN,
     title = {SIGNed explanations: Unveiling relevant features by reducing bias},
@@ -59,7 +59,7 @@ To download the datasets, run ```bash download_datasets.sh```. Prior, make sure 
 
 [Terms and contitions](http://places2.csail.mit.edu/download.html)
 
-[Paper: IEEE Transaction on Pattern Analysis and Machine Intelligence](https://doi.org/10.1109/TPAMI.2017.2723009)
+[Paper: IEEE Transactions on Pattern Analysis and Machine Intelligence](https://doi.org/10.1109/TPAMI.2017.2723009)
 ```
  @article{zhou2017places,
     author={Zhou, Bolei and Lapedriza, Agata and Khosla, Aditya and Oliva, Aude and Torralba, Antonio},
@@ -73,53 +73,40 @@ To download the datasets, run ```bash download_datasets.sh```. Prior, make sure 
  }
 ```
 
-## Models
-To download the pre-trained models, run:
+## VGG 16 Models
+To download the pre-trained models, run ``` bash download_models.sh ```
+
+The VGG16 architecture was proposed by Karen Simonyan and Andrew Zisserman in their 2015 paper:
+[Paper: 3rd ICLR 2015 San Diego](http://arxiv.org/abs/1409.1556)
 ```
-wget -O VGG16ILSVRC.h5 https://www.dropbox.com/s/ /VGG16ILSVRC.h5?dl=1
-wget -O VGG16MITPL365.h5 https://www.dropbox.com/s/ /VGG16MITPL365.h5?dl=1
+@inproceedings{Simonyan2015VGG16,
+  author    = {Karen Simonyan and Andrew Zisserman},
+  editor    = {Yoshua Bengio and Yann LeCun},
+  title     = {Very Deep Convolutional Networks for Large-Scale Image Recognition},
+  booktitle = {3rd International Conference on Learning Representations, {ICLR} 2015,
+               San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1409.1556},
+}
 ```
 
 ### VGG16 trained on ImageNet (ILSVRC2012)
-TODO: VGG16 Source / Paper
 
-from keras. source?
-
-```
- @misc{chollet2015keras,
-    title={Keras},
-    author={Chollet, Fran\c{c}ois and others},
-    year={2015},
-    howpublished={\url{https://keras.io}},
- }
-```
+VGG16 model and weights obtained from ```tensorflow.python.keras.applications.vgg16```. We exported the model and uploaded it alongside with the model trained on MIT Places 365 for reasons of long-term reproducibility.
+Reference:
+https://keras.io, https://www.tensorflow.org/
 
 ### VGG16 trained on MIT Places 365
-TODO: VGG16 Source / Paper
 
-VGG16 model and weights obtained from [GitHub](https://github.com/CSAILVision/places365):
+VGG16 model and weights obtained from [CSAILVision group's GitHub](https://github.com/CSAILVision/places365):
 
-[Model](https://github.com/CSAILVision/places365/blob/master/deploy_vgg16_places365.prototxt)
-and 
-[Weights](http://places2.csail.mit.edu/models_places365/vgg16_places365.caffemodel)
+ - [Model](https://github.com/CSAILVision/places365/blob/master/deploy_vgg16_places365.prototxt)
+ - [Weights](http://places2.csail.mit.edu/models_places365/vgg16_places365.caffemodel)
 
 As the model originally had been trained in [Caffe](https://caffe.berkeleyvision.org/), 
-models have been converted to [Keras](https://keras.io) using [MMdnn](https://github.com/microsoft/MMdnn).
+models have been converted to [Keras](https://keras.io) H5 format using [MMdnn](https://github.com/microsoft/MMdnn).
 
-[Paper: IEEE Transaction on Pattern Analysis and Machine Intelligence](https://doi.org/10.1109/TPAMI.2017.2723009)
-```
- @article{zhou2017places,
-    author={Zhou, Bolei and Lapedriza, Agata and Khosla, Aditya and Oliva, Aude and Torralba, Antonio},
-    journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-    title={Places: A 10 Million Image Database for Scene Recognition}, 
-    year={2018},
-    volume={40},
-    number={6},
-    pages={1452-1464},
-    doi={10.1109/TPAMI.2017.2723009}
- }
-```
 
 ## Experiments
 
-To reproduce the results of the experiments publsihed in our journal article, simply run ``` python3 reproduce_results.py ```.
+To reproduce the experiments from our paper, simply run ``` python3 reproduce_results.py ```. Depending on your GPU-performance, this may take a substantial while. If you are interested only in partial results, feel free to comment out parts of the code. 

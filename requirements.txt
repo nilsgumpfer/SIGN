@@ -1,0 +1,10 @@
+numpy~=1.19.5
+matplotlib~=3.3.4
+opencv-python~=4.5.3.56
+tensorflow~=2.2.0
+Pillow~=8.1.2
+scipy~=1.4.1
+deeplift~=0.6.13.0
+six~=1.15.0
+pandas~=1.1.5
+adjustText~=0.7.3
