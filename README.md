@@ -1,6 +1,9 @@
 # SIGNed explanations: Unveiling relevant features by reducing bias
 
-This repository contains code to reproduce the experiments published in below journal article. If you use the code from this repository in your work, please cite:
+This repository contains code to reproduce the experiments published in below journal article:
+https://doi.org/10.1016/j.inffus.2023.101883
+
+If you use the code from this repository in your work, please cite:
 ```
  @article{Gumpfer2023SIGN,
     title = {SIGNed explanations: Unveiling relevant features by reducing bias},
