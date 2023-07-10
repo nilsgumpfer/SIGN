@@ -116,4 +116,4 @@ To reproduce the experiments from our paper, simply run ``` python3 reproduce_re
 
 ## Python package
 
-We released a toolbox containing all XAI methods used in our paper as a stand-alone python package as well. You can install it via ```pip3 install signxai``` (further details: https://pypi.org/project/signxai/1.0.0/ ).
+We released a toolbox containing all XAI methods used in our paper as a stand-alone python package as well. You can install it via ```pip3 install signxai``` (further details: https://pypi.org/project/signxai/ ).
