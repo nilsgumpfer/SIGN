@@ -4,7 +4,7 @@ This repository contains code to reproduce the experiments published in below jo
 https://doi.org/10.1016/j.inffus.2023.101883
 
 If you use the code from this repository in your work, please cite:
-```
+```bibtex
  @article{Gumpfer2023SIGN,
     title = {SIGNed explanations: Unveiling relevant features by reducing bias},
     author = {Nils Gumpfer and Joshua Prim and Till Keller and Bernhard Seeger and Michael Guckert and Jennifer Hannig},
