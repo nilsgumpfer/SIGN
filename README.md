@@ -44,7 +44,7 @@ To download the datasets, run ```bash download_datasets.sh```. Prior, make sure 
 [Terms and contitions](https://image-net.org/download.php)
 
 [Paper: International Journal of Computer Vision](https://doi.org/10.1007/s11263-015-0816-y)
-```
+```bibtex
  @article{ILSVRC15,
     author={Olga Russakovsky and Jia Deng and Hao Su and Jonathan Krause and Sanjeev Satheesh and Sean Ma and Zhiheng Huang and Andrej Karpathy and Aditya Khosla and Michael Bernstein and Alexander C. Berg and Li Fei-Fei},
     title={{ImageNet Large Scale Visual Recognition Challenge}},
@@ -63,7 +63,7 @@ To download the datasets, run ```bash download_datasets.sh```. Prior, make sure 
 [Terms and contitions](http://places2.csail.mit.edu/download.html)
 
 [Paper: IEEE Transactions on Pattern Analysis and Machine Intelligence](https://doi.org/10.1109/TPAMI.2017.2723009)
-```
+```bibtex
  @article{zhou2017places,
     author={Zhou, Bolei and Lapedriza, Agata and Khosla, Aditya and Oliva, Aude and Torralba, Antonio},
     journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
@@ -81,7 +81,7 @@ To download the pre-trained models, run ``` bash download_models.sh ```
 
 The VGG16 architecture was proposed by Karen Simonyan and Andrew Zisserman in their 2015 paper:
 [Paper: 3rd ICLR 2015 San Diego](http://arxiv.org/abs/1409.1556)
-```
+```bibtex
 @inproceedings{Simonyan2015VGG16,
   author    = {Karen Simonyan and Andrew Zisserman},
   editor    = {Yoshua Bengio and Yann LeCun},
@@ -95,7 +95,7 @@ The VGG16 architecture was proposed by Karen Simonyan and Andrew Zisserman in th
 
 ### VGG16 trained on ImageNet (ILSVRC2012)
 
-VGG16 model and weights obtained from ```tensorflow.python.keras.applications.vgg16```. We exported the model and uploaded it alongside with the model trained on MIT Places 365 for reasons of long-term reproducibility.
+VGG16 model and weights obtained from ``` tensorflow.python.keras.applications.vgg16 ```. We exported the model and uploaded it alongside with the model trained on MIT Places 365 for reasons of long-term reproducibility.
 Reference:
 https://keras.io, https://www.tensorflow.org/
 
