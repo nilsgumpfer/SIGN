@@ -113,3 +113,7 @@ models have been converted to [Keras](https://keras.io) H5 format using [MMdnn](
 ## Experiments
 
 To reproduce the experiments from our paper, simply run ``` python3 reproduce_results.py ```. Depending on your GPU-performance, this may take a substantial while. If you are interested only in partial results, feel free to comment out parts of the code. 
+
+## Python package
+
+We released a toolbox containing all XAI methods used in our paper as a stand-alone python package as well. You can install it via ```pip3 install signxai``` (further details: https://pypi.org/project/signxai/1.0.0/ ).
