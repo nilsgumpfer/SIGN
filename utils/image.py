@@ -82,7 +82,7 @@ def plot_combine_row(dataset_id, model_id, filenames, targetfilename, zoomf=1.0,
 
 def plot_single_pos_neg(dataset_id, model_id, filename, figdim=5, **kwargs):
     # Derive path
-    path_plots = 'plots/{}_{}'.format(dataset_id, model_id)
+    path_plots = './plots/{}_{}'.format(dataset_id, model_id)
     path_saveto = '{}/{}_img_pos_neg.png'.format(path_plots, remove_filetype(filename))
 
     # Create directory for plots if absent
@@ -105,7 +105,7 @@ def plot_single_pos_neg(dataset_id, model_id, filename, figdim=5, **kwargs):
     plt.ylabel('224px')
     plt.xticks([])
     plt.yticks([])
-    plt.title('Input image (mean values)')
+    plt.title('Input mean values')
 
     plt.tight_layout()
     plt.savefig(path_saveto)
@@ -155,7 +155,6 @@ def plot_crop_zoom(dataset_id, model_id, filename, cropx, cropy, croph, cropw, p
     img_in_shape = img_in.shape
 
     # Color
-    # lc = (72, 72, 72)
     R, G, B = (42, 180, 73)
     lc = (B, G, R)
 

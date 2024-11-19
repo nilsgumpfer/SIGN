@@ -1,6 +1,7 @@
 def pretty_method_name(m, wo_params=False):
     mapping_with_params = {
-        'gradient_x_sign': r'Gradient $\times$ SIGN $(\mu = 0)$',
+        # 'gradient_x_sign': r'Gradient $\times$ SIGN $(\mu = 0)$',
+        'gradient_x_sign': r'Gradient $\times$ SIGN',
         'gradient_x_sign_mu_0': r'Gradient $\times$ SIGN $(\mu = 0)$',
         'gradient_x_sign_mu_0_5': r'Gradient $\times$ SIGN $(\mu = 0.5)$',
         'gradient_x_sign_mu_neg_0_5': r'Gradient $\times$ SIGN $(\mu = -0.5)$',
