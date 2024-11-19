@@ -1,1 +1,1 @@
-docker run -it -d -v /mnt/volume:/data --gpus all --name $(whoami)_exp_env_ub1804py38tf28 ub2004py36tf22:v1.0 bash
+docker run -it -d -v /mnt/volume:/data --gpus all --name $(whoami)_exp_env_ub1804py36tf22 ub1804py36tf22:v1.0 bash

@@ -1,0 +1,1 @@
+docker build -t ub1804py36tf22:v1.0 . --no-cache
