@@ -14,7 +14,7 @@ RUN apt-get install -y curl
 RUN apt-get install -y libcurl4-openssl-dev libssl-dev
 RUN apt-get install -y libsm6 libxext6 libxrender-dev
 RUN apt-get install -y ffmpeg libsm6 libxext6
-RUN apt-get install -y texlive-full
+# RUN apt-get install -y texlive-full
 RUN pip3 install opencv-python==4.5.3.56
 RUN pip3 install opencv-contrib-python==4.5.5.64
 RUN pip3 install opencv-python-headless==4.1.2.30
