@@ -1,8 +1,11 @@
-from matplotlib import rcParams
+from utils.env import set_visible_gpu
+
+set_visible_gpu(2)
 
 from experiments.bulk_mnist import run_bulk_mnist
 from utils.mnist import load_and_prepare_data, load_or_train_model
 from utils.training import enable_reproducibility
+from matplotlib import rcParams
 
 rcParams['text.usetex'] = True
 rcParams['font.size'] = 14
