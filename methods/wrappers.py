@@ -53,17 +53,68 @@ def gradient_x_sign_mu(model_no_softmax, x, mu, batchmode=False, **kwargs):
         return gradient(model_no_softmax, x, **kwargs) * calculate_sign_mu(x, mu, **kwargs)
 
 
-def gradient_x_sign_mu_0(model_no_softmax, x, **kwargs):
-    return gradient_x_sign_mu(model_no_softmax, x, mu=0, **kwargs)
+def gradient_x_sign_mu_0_1(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.1, **kwargs)
 
+def gradient_x_sign_mu_0_2(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.2, **kwargs)
+
+def gradient_x_sign_mu_0_3(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.3, **kwargs)
+
+def gradient_x_sign_mu_0_4(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.4, **kwargs)
 
 def gradient_x_sign_mu_0_5(model_no_softmax, x, **kwargs):
     return gradient_x_sign_mu(model_no_softmax, x, mu=0.5, **kwargs)
 
+def gradient_x_sign_mu_0_6(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.6, **kwargs)
+
+def gradient_x_sign_mu_0_7(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.7, **kwargs)
+
+def gradient_x_sign_mu_0_8(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.8, **kwargs)
+
+def gradient_x_sign_mu_0_9(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0.9, **kwargs)
+
+def gradient_x_sign_mu_1(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=1.0, **kwargs)
+
+def gradient_x_sign_mu_0(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=0, **kwargs)
+
+def gradient_x_sign_mu_neg_0_1(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.1, **kwargs)
+
+def gradient_x_sign_mu_neg_0_2(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.2, **kwargs)
+
+def gradient_x_sign_mu_neg_0_3(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.3, **kwargs)
+
+def gradient_x_sign_mu_neg_0_4(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.4, **kwargs)
 
 def gradient_x_sign_mu_neg_0_5(model_no_softmax, x, **kwargs):
     return gradient_x_sign_mu(model_no_softmax, x, mu=-0.5, **kwargs)
 
+def gradient_x_sign_mu_neg_0_6(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.6, **kwargs)
+
+def gradient_x_sign_mu_neg_0_7(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.7, **kwargs)
+
+def gradient_x_sign_mu_neg_0_8(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.8, **kwargs)
+
+def gradient_x_sign_mu_neg_0_9(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-0.9, **kwargs)
+
+def gradient_x_sign_mu_neg_1(model_no_softmax, x, **kwargs):
+    return gradient_x_sign_mu(model_no_softmax, x, mu=-1.0, **kwargs)
 
 def guided_backprop(model_no_softmax, x, **kwargs):
     return calculate_explanation_innvestigate(model_no_softmax, x, method='guided_backprop', **kwargs)

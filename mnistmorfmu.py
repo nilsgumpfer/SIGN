@@ -16,6 +16,7 @@ rcParams['figure.dpi'] = 1000
 methods = ['random_uniform',
             'gradient',
             'gradient_x_input',
+            'gradient_x_sign_mu_1',
             'gradient_x_sign_mu_0_9',
             'gradient_x_sign_mu_0_8',
             'gradient_x_sign_mu_0_7',
@@ -26,15 +27,16 @@ methods = ['random_uniform',
             'gradient_x_sign_mu_0_2',
             'gradient_x_sign_mu_0_1',
             'gradient_x_sign_mu_0',
-            'gradient_x_sign_mu_neg_0_9',
-            'gradient_x_sign_mu_neg_0_8',
-            'gradient_x_sign_mu_neg_0_7',
-            'gradient_x_sign_mu_neg_0_6',
-            'gradient_x_sign_mu_neg_0_5',
-            'gradient_x_sign_mu_neg_0_4',
-            'gradient_x_sign_mu_neg_0_3',
+            'gradient_x_sign_mu_neg_0_1',
             'gradient_x_sign_mu_neg_0_2',
-            'gradient_x_sign_mu_neg_0_1']
+            'gradient_x_sign_mu_neg_0_3',
+            'gradient_x_sign_mu_neg_0_4',
+            'gradient_x_sign_mu_neg_0_5',
+            'gradient_x_sign_mu_neg_0_6',
+            'gradient_x_sign_mu_neg_0_7',
+            'gradient_x_sign_mu_neg_0_8',
+            'gradient_x_sign_mu_neg_0_9',
+            'gradient_x_sign_mu_neg_1']
 
 def train_MNIST(variant, net, epochs=5, random_state=0, inverted=False):
     # Reproducibility setup
