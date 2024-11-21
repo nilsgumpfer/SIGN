@@ -1,6 +1,11 @@
 import os
+from symbol import factor
 
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+from scipy.stats import gaussian_kde
+from tensorflow.python.layers.core import dense
 
 from experiments.evaluate import run_evaluate_bulk
 from utils.env import set_visible_gpu
@@ -12,11 +17,11 @@ from utils.mnist import load_and_prepare_data, load_or_train_model
 from utils.training import enable_reproducibility
 from matplotlib import rcParams
 
-rcParams['text.usetex'] = True
-rcParams['font.size'] = 14
-rcParams['text.latex.preamble'] = "\\usepackage{amssymb}\n \\usepackage{amsmath}"
-rcParams['savefig.format'] = 'pdf'
-rcParams['figure.dpi'] = 1000
+# rcParams['text.usetex'] = True
+# rcParams['font.size'] = 14
+# rcParams['text.latex.preamble'] = "\\usepackage{amssymb}\n \\usepackage{amsmath}"
+# rcParams['savefig.format'] = 'pdf'
+# rcParams['figure.dpi'] = 1000
 
 methods = ['random_uniform',
             'gradient',
@@ -59,13 +64,61 @@ def train_MNIST(variant, net, epochs=5, random_state=0, inverted=False):
     print(model_id)
     load_or_train_model(modelpath, net, x_train, y_train, x_test, y_test, epochs)
 
+
+def parse_float(s):
+    if s.startswith('neg'):
+        s = s.replace('neg_', '')
+        factor = -1.0
+    else:
+        factor = 1.0
+
+    return float(s.replace('_', '.')) * factor
+
+
 def generate_plot():
     for root, dirs, files in os.walk('tables'):
         for f in files:
             if f.endswith('.xlsx'):
-                df = pd.read_excel('{}/{}'.format(root, f))
-                print(df.columns)
-                # TODO: GO ON HERE
+                x = []
+                y = []
+                df = pd.read_excel('{}/{}'.format(root, f), engine='openpyxl', skiprows=1)
+
+                for m, aoc in zip(df[df.columns[0]].values[1:], df['mean'].values[1:]):
+                    begin = 'gradient_x_sign_mu_'
+                    if m.startswith(begin):
+                        mu = parse_float(m.replace(begin, ''))
+                        x.append(mu)
+                        y.append(aoc)
+
+                title = root.replace('tables/', '')
+                variant = title.replace('MNIST_DENSEMNIST', '')
+                if variant.endswith('INV'):
+                    variant = variant.replace('INV', '')
+                    inverted = True
+                else:
+                    inverted = False
+
+                # Load and prepare data
+                print('Loading', variant, inverted)
+                (_, _), (x_test, _) = load_and_prepare_data(variant, inverted)
+                data = np.ravel(x_test)
+
+                # for q in np.arange(start=0, stop=1, step=0.05):
+                #     d = np.quantile(np.ravel(x_test), q)
+                #     print(q, d)
+
+                plt.hist(data, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black')
+
+                # d = np.quantile(np.ravel(x_test), 0.125)
+                # plt.axvline(x=d, color='r')
+                plt.scatter(x, y)
+                # plt.ylim((0.85, max(y)+0.02))
+                plt.title(title)
+                plt.tight_layout()
+                plt.savefig('plots/mu_analysis/{}.pdf'.format(title))
+                plt.close()
+                del x_test
+
 
 # Train MNIST models
 # train_MNIST(variant='01', net='DENSE', inverted=True)
