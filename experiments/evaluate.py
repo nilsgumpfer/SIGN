@@ -57,7 +57,8 @@ def run_evaluate_bulk(methods, dataset_id, model_id, morfnum=250, baseline_metho
     df.columns = header
 
     # Reformat dataframe: index
-    df.index = Index([pretty_method_name(m) for m in df.index], name='method')
+    # df.index = Index([pretty_method_name(m) for m in df.index], name='method')
+    df.index = Index([m for m in df.index], name='method')
     pd.set_option('display.max_colwidth', None)
 
     # Export dataframe to LaTeX
@@ -67,7 +68,7 @@ def run_evaluate_bulk(methods, dataset_id, model_id, morfnum=250, baseline_metho
                 multicolumn_format='c',
                 buf='{}/table_results_g{}.tex'.format(path_tables, group_name))
 
-    # df.to_excel('{}/table_results_g{}.xlsx'.format(path_tables, group_name))
+    df.to_excel('{}/table_results_g{}.xlsx'.format(path_tables, group_name))
 
 
 def run_evaluate_bulk_multiple(methods, dataset_id, model_ids, metric, morfnum=250, group_name='1', aggr=['mean'], dround=2, colgroups=None, suffix_merge=None, **kwargs):
@@ -256,7 +257,7 @@ def evaluate_morf_aoc(methods, dataset_id, model_id, path_plots, morfnum=250, ba
         else:
             plt.figure(figsize=(figdim * 1.8, figdim*1.05))
 
-        for i, (a, mc, bc, mmc, mmbc, m) in enumerate(sorted(all_results).__reversed__()):
+        for a, mc, bc, mmc, mmbc, m in all_results:
             if m == baseline_method:
                 c = 'k'
             else:
