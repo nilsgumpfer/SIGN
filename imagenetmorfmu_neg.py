@@ -1,6 +1,6 @@
 from utils.env import set_visible_gpu
 
-set_visible_gpu(0)
+set_visible_gpu(1)
 
 from experiments.bulk import run_bulk
 from matplotlib import rcParams
@@ -11,12 +11,7 @@ rcParams['text.latex.preamble'] = "\\usepackage{amssymb}\n \\usepackage{amsmath}
 rcParams['savefig.format'] = 'pdf'
 rcParams['figure.dpi'] = 1000
 
-methods = ['gradient_x_sign_mu_128',
-           'gradient_x_sign_mu_96',
-           'gradient_x_sign_mu_64',
-           'gradient_x_sign_mu_32',
-           'gradient_x_sign_mu_0',
-           'gradient_x_sign_mu_neg_32',
+methods = ['gradient_x_sign_mu_neg_32',
            'gradient_x_sign_mu_neg_64',
            'gradient_x_sign_mu_neg_96',
            'gradient_x_sign_mu_neg_128']
