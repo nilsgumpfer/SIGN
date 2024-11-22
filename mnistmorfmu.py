@@ -107,12 +107,15 @@ def generate_plot():
                 #     d = np.quantile(np.ravel(x_test), q)
                 #     print(q, d)
 
-                plt.hist(data, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black')
+                # plt.hist(data, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black')
 
+                x = np.array(x)
+                y = np.array(y)
                 # d = np.quantile(np.ravel(x_test), 0.125)
-                # plt.axvline(x=d, color='r')
                 plt.scatter(x, y)
-                # plt.ylim((0.85, max(y)+0.02))
+                plt.scatter(x[y == np.max(y)], y[y == np.max(y)], c='r')
+                plt.ylim((0.85, max(y) + 0.01))
+                plt.xlim((np.min(data) - 0.02, np.max(data) + 0.02))
                 plt.title(title)
                 plt.tight_layout()
                 plt.savefig('plots/mu_analysis/{}.pdf'.format(title))
