@@ -77,50 +77,51 @@ def parse_float(s):
 
 def generate_plot():
     for root, dirs, files in os.walk('tables'):
-        for f in files:
-            if f.endswith('.xlsx'):
-                x = []
-                y = []
-                df = pd.read_excel('{}/{}'.format(root, f), engine='openpyxl', skiprows=1)
+        if 'MNIST' in root:
+            for f in files:
+                if f.endswith('.xlsx'):
+                    x = []
+                    y = []
+                    df = pd.read_excel('{}/{}'.format(root, f), engine='openpyxl', skiprows=1)
 
-                for m, aoc in zip(df[df.columns[0]].values[1:], df['mean'].values[1:]):
-                    begin = 'gradient_x_sign_mu_'
-                    if m.startswith(begin):
-                        mu = parse_float(m.replace(begin, ''))
-                        x.append(mu)
-                        y.append(aoc)
+                    for m, aoc in zip(df[df.columns[0]].values[1:], df['mean'].values[1:]):
+                        begin = 'gradient_x_sign_mu_'
+                        if m.startswith(begin):
+                            mu = parse_float(m.replace(begin, ''))
+                            x.append(mu)
+                            y.append(aoc)
 
-                title = root.replace('tables/', '')
-                variant = title.replace('MNIST_DENSEMNIST', '')
-                if variant.endswith('INV'):
-                    variant = variant.replace('INV', '')
-                    inverted = True
-                else:
-                    inverted = False
+                    title = root.replace('tables/', '')
+                    variant = title.replace('MNIST_DENSEMNIST', '')
+                    if variant.endswith('INV'):
+                        variant = variant.replace('INV', '')
+                        inverted = True
+                    else:
+                        inverted = False
 
-                # Load and prepare data
-                print('Loading', variant, inverted)
-                (_, _), (x_test, _) = load_and_prepare_data(variant, inverted)
-                data = np.ravel(x_test)
+                    # Load and prepare data
+                    print('Loading', variant, inverted)
+                    (_, _), (x_test, _) = load_and_prepare_data(variant, inverted)
+                    data = np.ravel(x_test)
 
-                # for q in np.arange(start=0, stop=1, step=0.05):
-                #     d = np.quantile(np.ravel(x_test), q)
-                #     print(q, d)
+                    # for q in np.arange(start=0, stop=1, step=0.05):
+                    #     d = np.quantile(np.ravel(x_test), q)
+                    #     print(q, d)
 
-                # plt.hist(data, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black')
+                    # plt.hist(data, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black')
 
-                x = np.array(x)
-                y = np.array(y)
-                # d = np.quantile(np.ravel(x_test), 0.125)
-                plt.scatter(x, y)
-                plt.scatter(x[y == np.max(y)], y[y == np.max(y)], c='r')
-                plt.ylim((0.85, max(y) + 0.01))
-                plt.xlim((np.min(data) - 0.02, np.max(data) + 0.02))
-                plt.title(title)
-                plt.tight_layout()
-                plt.savefig('plots/mu_analysis/{}.pdf'.format(title))
-                plt.close()
-                del x_test
+                    x = np.array(x)
+                    y = np.array(y)
+                    # d = np.quantile(np.ravel(x_test), 0.125)
+                    plt.scatter(x, y)
+                    plt.scatter(x[y == np.max(y)], y[y == np.max(y)], c='r')
+                    plt.ylim((0.85, max(y) + 0.01))
+                    plt.xlim((np.min(data) - 0.02, np.max(data) + 0.02))
+                    plt.title(title)
+                    plt.tight_layout()
+                    plt.savefig('plots/mu_analysis/{}.pdf'.format(title))
+                    plt.close()
+                    del x_test
 
 
 # Train MNIST models

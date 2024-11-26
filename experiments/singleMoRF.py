@@ -16,7 +16,8 @@ from utils.preprocessing import get_image, reverse_preprocess_image
 
 
 def run_single_MoRF(method, dataset_id, model_id, filename, brightness=1.0, contrast=1.0, morfnum=250, batch_size=10, figdim=4, **kwargs):
-    positions = [0, 0.05, 0.2, 1]
+    # positions = [0, 0.05, 0.2, 1]
+    positions = [0, 0.07, 1]
     snapshot_idxs = [int(morfnum * p) for p in positions]
     ticklabels = ['{}%'.format(int(idx*100)) for idx in positions]
 
