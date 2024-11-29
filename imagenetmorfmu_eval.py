@@ -70,5 +70,5 @@ def generate_plot():
         plt.close()
 
 
-# run_evaluate_bulk(dataset_id='ILSVRC2012val', model_id='VGG16ILSVRC', methods=methods, legend_inside=False)
+run_evaluate_bulk(dataset_id='ILSVRC2012val', model_id='VGG16ILSVRC', methods=methods, legend_inside=False)
 generate_plot()

@@ -188,3 +188,5 @@ def plot_crop_zoom(dataset_id, model_id, filename, cropx, cropy, croph, cropw, p
     if cleanup:
         # Cleanup tmp files
         cleanup_paths([path_in])
+
+    return [path_out.replace(path_plots, '')]
