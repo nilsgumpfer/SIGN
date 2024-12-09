@@ -27,7 +27,15 @@ methods = ['gradient_x_sign_mu_128',
            'gradient_x_sign_mu_96',
            'gradient_x_sign_mu_64',
            'gradient_x_sign_mu_32',
+           'gradient_x_sign_mu_16',
+           'gradient_x_sign_mu_8',
+           'gradient_x_sign_mu_4',
+           'gradient_x_sign_mu_2',
            'gradient_x_sign_mu_0',
+           'gradient_x_sign_mu_neg_2',
+           'gradient_x_sign_mu_neg_4',
+           'gradient_x_sign_mu_neg_8',
+           'gradient_x_sign_mu_neg_16',
            'gradient_x_sign_mu_neg_32',
            'gradient_x_sign_mu_neg_64',
            'gradient_x_sign_mu_neg_96',
@@ -60,8 +68,8 @@ def generate_plot():
 
         x = np.array(x)
         y = np.nan_to_num(np.array(y))
-        plt.scatter(x, y)
-        plt.scatter(x[y == np.max(y)], y[y == np.max(y)], c='r')
+        plt.scatter(x, y, s=6)
+        plt.scatter(x[y == np.max(y)], y[y == np.max(y)], c='r', s=6)
         plt.ylim((0.85, max(y) + 0.01))
         plt.xlim((-141 - 0.02, 141))
         plt.title(title)
