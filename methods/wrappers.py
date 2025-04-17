@@ -1,5 +1,7 @@
 import numpy as np
 
+import tensorflow as tf
+from methods.dtd import find_root_point
 from methods.grad_cam import calculate_grad_cam_relevancemap
 from methods.guided_backprop import guided_backprop_on_guided_model
 from methods.signed import calculate_sign_mu
@@ -39,6 +41,20 @@ def gradient_x_sign(model_no_softmax, x, **kwargs):
     s = np.nan_to_num(x / np.abs(x), nan=1.0)
 
     return g * s
+
+
+def gradient_x_grad_root_diff(model_no_softmax, x, model_w_softmax=None, neuron_selection=None, **kwargs):
+    if model_w_softmax is None:
+        raise Exception("'model' was None")
+
+    if neuron_selection is None:
+        pred = model_w_softmax(np.array([x]))
+        neuron_selection = tf.argmax(pred[0])
+
+    g = gradient(model_no_softmax, x, **kwargs)
+    rt = find_root_point(np.array([x]), model_w_softmax, class_idx=neuron_selection, **kwargs)[0].numpy()
+
+    return g * (x - rt)
 
 
 def gradient_x_sign_mu(model_no_softmax, x, mu, batchmode=False, **kwargs):
@@ -616,6 +632,31 @@ def lrp_epsilon_0_25_std_x(model_no_softmax, x, **kwargs):
 
 def lrpsign_epsilon_0_25_std_x(model_no_softmax, x, **kwargs):
     return lrp_epsilon_0_25_std_x(model_no_softmax, x, input_layer_rule='SIGN', **kwargs)
+
+
+def lrpgrdtd_epsilon_std_x(model_no_softmax, x, model_w_softmax=None, neuron_selection=None, lr=0.5, stdfactor=0.25, **kwargs):
+    if model_w_softmax is None:
+        raise Exception("'model' was None")
+
+    if neuron_selection is None:
+        pred = model_w_softmax(np.array([x]))
+        neuron_selection = tf.argmax(pred[0])
+
+    rt = find_root_point(np.array([x]), model_w_softmax, class_idx=neuron_selection, lr=lr, **kwargs)[0].numpy()
+
+    return calculate_explanation_innvestigate(model_no_softmax, x, method='lrp.stdxepsilon', stdfactor=stdfactor, input_layer_rule='GradRootDTD', rt=rt, **kwargs)
+
+
+def lrpgrdtd_epsilon_0_1_std_x(model_no_softmax, x, **kwargs):
+    return lrpgrdtd_epsilon_std_x(model_no_softmax, x, stdfactor=0.1, **kwargs)
+
+
+def lrpgrdtd_epsilon_0_25_std_x(model_no_softmax, x, **kwargs):
+    return lrpgrdtd_epsilon_std_x(model_no_softmax, x, stdfactor=0.25, **kwargs)
+
+
+def lrpgrdtd_epsilon_0_5_std_x(model_no_softmax, x, **kwargs):
+    return lrpgrdtd_epsilon_std_x(model_no_softmax, x, stdfactor=0.5, **kwargs)
 
 
 def lrpz_epsilon_0_25_std_x(model_no_softmax, x, **kwargs):

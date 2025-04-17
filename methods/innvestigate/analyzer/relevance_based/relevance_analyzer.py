@@ -64,6 +64,7 @@ LRP_RULES = {
     "ZIgnoreBias": rrule.ZIgnoreBiasRule,
 
     "SIGN": rrule.SIGNRule,
+    "GradRootDTD": rrule.GradRootDTDRule,
     "SIGNmu": rrule.SIGNmuRule,
     "Epsilon": rrule.EpsilonRule,
     "StdxEpsilon": rrule.StdxEpsilonRule,

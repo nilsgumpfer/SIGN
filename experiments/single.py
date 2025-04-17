@@ -29,7 +29,7 @@ def run_single(method, dataset_id, model_id, filename, morfnum=250, batch_size=1
     img, x = get_image(filename, dataset_id, expand_dims=False)
 
     # Calculate relevancemap
-    R = calculate_relevancemap(method, x, model_w_o_softmax, **kwargs)
+    R = calculate_relevancemap(method, x, model_w_o_softmax, model_w_softmax=model_w_softmax, **kwargs)
 
     # Calculate MoRF curve and AOC
     if morfnum is not None:

@@ -241,6 +241,41 @@ class StdxEpsilonRule(reverse_map.ReplacementLayer):
         return ret
 
 
+
+class GradRootDTDRule(reverse_map.ReplacementLayer):
+    def __init__(self, layer, *args, **kwargs):
+        bias = kwargs.pop("bias", True)
+        self.rt = kwargs.pop("rt", None)
+        if self.rt is None:
+            raise Exception("No root point provided!")
+
+        self._layer_wo_act = kgraph.copy_layer_wo_activation(layer,
+                                                             keep_bias=bias,
+                                                             name_template="no_act_%s")
+        super(GradRootDTDRule, self).__init__(layer, *args, **kwargs)
+
+    def wrap_hook(self, ins, neuron_selection, stop_mapping_at_layers, r_init):
+        with tf.GradientTape(persistent=True) as tape:
+            tape.watch(ins)
+            outs = self.layer_func(ins)
+            Zs = self._layer_wo_act(ins)
+
+        return outs, Zs, tape
+
+    def explain_hook(self, ins, reversed_outs, args):
+        if len(self.input_shape) > 1:
+            raise ValueError("This Layer should only have one input!")
+
+        outs, Zs, tape = args
+
+        tmp = ilayers.SafeDivide()([reversed_outs, Zs])
+        tmp2 = tape.gradient(Zs, ins, output_gradients=tmp)
+
+        ret = keras_layers.Multiply()([(ins - self.rt), tmp2])
+
+        return ret
+
+
 class SIGNRule(reverse_map.ReplacementLayer):
     def __init__(self, layer, *args, **kwargs):
         bias = kwargs.pop("bias", True)
