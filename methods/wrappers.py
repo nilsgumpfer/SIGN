@@ -57,6 +57,21 @@ def gradient_x_grad_root_diff(model_no_softmax, x, model_w_softmax=None, neuron_
     return g * (x - rt)
 
 
+def gradient_x_grad_root_diff_reverse(model_no_softmax, x, model_w_softmax=None, neuron_selection=None, **kwargs):
+    if model_w_softmax is None:
+        raise Exception("'model' was None")
+
+    if neuron_selection is None:
+        pred = model_w_softmax(np.array([x]))
+        neuron_selection = tf.argmax(pred[0])
+
+    rt = find_root_point(np.array([x]), model_w_softmax, class_idx=neuron_selection, **kwargs)[0].numpy()
+    g = gradient(model_no_softmax, rt, **kwargs)
+
+    return g * (x - rt)
+    # return g * (rt - x)
+
+
 def gradient_x_sign_mu(model_no_softmax, x, mu, batchmode=False, **kwargs):
     if batchmode:
         G = []

@@ -9,7 +9,7 @@ rcParams['savefig.format'] = 'pdf'
 # dataset_id = 'flickr'
 dataset_id = 'other'
 
-filename = 'ViaduktUengsterode.jpg'
+# filename = 'ViaduktUengsterode.jpg'
 # filename = '234775821_ae4ebf6f2a_o.jpg'
 # filename = '447888592_7e64c84851_o.jpg'
 # filename = '234775821_ae4ebf6f2a_o.jpg'
@@ -17,11 +17,12 @@ filename = 'ViaduktUengsterode.jpg'
 # filename = '605505232_e93d1a976f_o.jpg'
 # filename = '15519846401_582d9bcbac_o.jpg'
 # filename = '9527376792_66fd86567e_o.jpg'
-# filename = 'baseballplayer.png'
+filename = 'baseballplayer.png'
 
 # method = 'gradient_x_grad_root_diff'
 # method = 'lrpgrdtd_epsilon_0_5_std_x'
-method = 'lrpgrdtd_epsilon_0_25_std_x'
+# method = 'lrpgrdtd_epsilon_0_25_std_x'
+method = 'gradient_x_grad_root_diff_reverse' # TODO: calculate gradient of what and how to calculate distance?
 # method = 'lrpsign_epsilon_0_5_std_x'
 
 lr = 10
